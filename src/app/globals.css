@@ -1,26 +1,108 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --burgundy: #5a0819;
+  --burgundy-deep: #4a0416;
+  --burgundy-soft: #7a1a2c;
+  --gold: #b0966f;
+  --gold-soft: #c4ae8a;
+  --cream: #fdf8f5;
+  --cream-soft: #f5ebe4;
+  --ink: #2a1216;
+  --muted: #6b4a4f;
+  --ring-start: #f0a060;
+  --ring-end: #c43b6e;
+  --background: var(--cream);
+  --foreground: var(--burgundy);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-burgundy: var(--burgundy);
+  --color-burgundy-deep: var(--burgundy-deep);
+  --color-burgundy-soft: var(--burgundy-soft);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-cream: var(--cream);
+  --color-cream-soft: var(--cream-soft);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--cream);
+  color: var(--burgundy);
+  font-family: var(--font-body), sans-serif;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--gold) 40%, white);
+  color: var(--burgundy-deep);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes soft-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s ease both;
+}
+
+.animate-fade-up-delay-1 {
+  animation: fade-up 0.7s ease 0.1s both;
+}
+
+.animate-fade-up-delay-2 {
+  animation: fade-up 0.7s ease 0.2s both;
+}
+
+.animate-fade-up-delay-3 {
+  animation: fade-up 0.7s ease 0.3s both;
+}
+
+.story-ring {
+  background: conic-gradient(
+    from 210deg,
+    var(--ring-start),
+    var(--ring-end),
+    var(--gold),
+    var(--ring-start)
+  );
+}
+
+.work-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.work-scroll::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--burgundy) 25%, transparent);
+  border-radius: 999px;
 }
