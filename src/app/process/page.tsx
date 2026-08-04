@@ -37,9 +37,9 @@ export default function ProcessPage() {
       />
 
       <div className="animate-fade-up-delay-1 relative">
-        <div className="absolute left-6 top-0 hidden h-full w-px bg-gradient-to-b from-gold via-burgundy/25 to-gold md:left-1/2 md:block" />
+        <div className="pointer-events-none absolute left-6 top-4 bottom-4 w-px bg-gradient-to-b from-gold via-burgundy/25 to-gold md:left-1/2 md:-translate-x-1/2" />
 
-        <ol className="space-y-8 md:space-y-14">
+        <ol className="space-y-10 md:space-y-16">
           {processSteps.map((step, index) => {
             const Icon = icons[step.icon];
             const reverse = index % 2 === 1;
@@ -48,11 +48,18 @@ export default function ProcessPage() {
             return (
               <li
                 key={step.label}
-                className={`relative grid items-center gap-5 md:grid-cols-2 md:gap-12 ${
-                  reverse ? "md:[&>*:first-child]:order-2" : ""
-                }`}
+                className="relative grid items-center gap-5 md:grid-cols-2 md:gap-x-20"
               >
-                <div className="relative aspect-[16/10] overflow-hidden bg-cream-soft md:aspect-[5/3]">
+                {/* Center timeline icon — desktop */}
+                <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-gold bg-cream text-burgundy shadow-sm md:flex">
+                  <Icon strokeWidth={1.5} className="h-5 w-5" />
+                </div>
+
+                <div
+                  className={`relative aspect-[16/10] overflow-hidden bg-cream-soft md:aspect-[5/3] ${
+                    reverse ? "md:order-2" : "md:order-1"
+                  }`}
+                >
                   <Image
                     src={step.image}
                     alt={step.label}
@@ -66,13 +73,16 @@ export default function ProcessPage() {
                   </span>
                 </div>
 
-                <div className="relative pl-12 md:pl-0">
-                  <div className="absolute left-0 top-1 flex h-12 w-12 items-center justify-center rounded-full border border-gold/50 bg-cream text-burgundy shadow-sm md:left-1/2 md:top-1/2 md:hidden">
-                    <Icon strokeWidth={1.5} className="h-5 w-5" />
-                  </div>
-
-                  <div className="absolute left-1/2 top-1/2 z-10 hidden h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-gold bg-cream text-burgundy shadow-sm md:flex">
-                    <Icon strokeWidth={1.5} className="h-5 w-5" />
+                <div
+                  className={`relative pl-14 md:pl-0 ${
+                    reverse
+                      ? "md:order-1 md:pr-4 md:text-right"
+                      : "md:order-2 md:pl-4"
+                  }`}
+                >
+                  {/* Mobile timeline icon */}
+                  <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-full border border-gold/50 bg-cream text-burgundy shadow-sm md:hidden">
+                    <Icon strokeWidth={1.5} className="h-4 w-4" />
                   </div>
 
                   <p className="mb-2 text-xs font-semibold tracking-[0.2em] text-gold">
@@ -81,7 +91,11 @@ export default function ProcessPage() {
                   <h2 className="font-[family-name:var(--font-display)] text-3xl text-burgundy sm:text-4xl">
                     {step.label}
                   </h2>
-                  <p className="mt-3 max-w-md text-sm leading-relaxed text-muted sm:text-base">
+                  <p
+                    className={`mt-3 max-w-md text-sm leading-relaxed text-muted sm:text-base ${
+                      reverse ? "md:ml-auto" : ""
+                    }`}
+                  >
                     {step.detail}
                   </p>
                 </div>

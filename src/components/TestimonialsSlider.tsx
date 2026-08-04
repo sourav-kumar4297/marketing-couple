@@ -25,11 +25,11 @@ export function TestimonialsSlider() {
 
   return (
     <div
-      className="animate-fade-up-delay-1"
+      className="animate-fade-up-delay-1 flex h-full flex-col"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="relative overflow-hidden border border-burgundy/10 bg-gradient-to-br from-cream via-white/70 to-cream-soft px-6 py-10 sm:px-10 sm:py-14">
+      <div className="relative flex min-h-[min(52vh,420px)] flex-1 flex-col justify-center overflow-hidden border border-burgundy/10 bg-gradient-to-br from-cream via-white/70 to-cream-soft px-6 py-10 sm:min-h-[min(58vh,520px)] sm:px-10 sm:py-14">
         <Quote
           strokeWidth={1}
           className="absolute right-6 top-6 h-16 w-16 text-gold/30 sm:right-10 sm:top-8 sm:h-20 sm:w-20"

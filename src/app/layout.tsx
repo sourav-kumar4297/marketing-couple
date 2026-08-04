@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: "%s | Marketing Couple",
   },
   description:
-    "Marketing Couple builds brands people remember through content, strategy, and organic growth across India and Canada.",
+    "Marketing Couple — founded by Surya & Gunika. Strategy, creativity, and execution under one roof. We build brands people remember.",
 };
 
 export default function RootLayout({

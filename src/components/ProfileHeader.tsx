@@ -45,7 +45,6 @@ export function ProfileHeader() {
           </p>
           <p className="text-sm font-medium text-ink">{site.tagline}</p>
           <p className="text-sm text-muted">{site.bio}</p>
-          <p className="pt-1 text-sm text-ink">{site.location}</p>
         </div>
       </div>
     </section>

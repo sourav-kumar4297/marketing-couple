@@ -3,15 +3,16 @@ export const site = {
   handle: "marketing.couple",
   title: "Marketing Couple",
   tagline: "Content. Strategy. Growth.",
+  slogan: "Strategy. Creativity. Execution. Under one roof.",
   bio: "We build brands people remember.",
-  location: "India 🇮🇳 | Canada 🇨🇦",
+  founders: "Surya & Gunika",
   instagram: "https://www.instagram.com/marketing.couple/",
   bookCall: "https://calendly.com/",
   email: "hello@marketing.couple",
   stats: [
     { value: "50+", label: "Projects" },
     { value: "30+", label: "Happy Clients" },
-    { value: "2", label: "Countries" },
+    { value: "7+", label: "Industries" },
   ],
 };
 
@@ -90,7 +91,7 @@ export const recentWork = [
       "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80",
   },
   {
-    title: "LUTF DATE COLA",
+    title: "LUTF",
     views: "96K",
     image:
       "https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=600&q=80",
@@ -108,10 +109,10 @@ export const recentWork = [
       "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=80",
   },
   {
-    title: "TEAM ARORA",
+    title: "TUBBY CRAFT",
     views: "156K",
     image:
-      "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80",
+      "https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=600&q=80",
   },
   {
     title: "BRAND REEL",
@@ -122,13 +123,29 @@ export const recentWork = [
 ];
 
 export const trustedBrands = [
-  "Discovery",
-  "MGADZ INC.",
-  "ROCKET SINGH",
-  "TEAM ARORA",
-  "VIPUL VERMA",
-  "JURAAB",
-  "LUTF",
+  { name: "Tubby Craft", logo: "/brands/tubby-craft.png" },
+  { name: "Damroo", logo: "/brands/damroo.png" },
+  { name: "Discovery Co-op Canada", logo: "/brands/discovery-coop.png" },
+  { name: "General Motors Canada", logo: "/brands/general-motors.png" },
+  { name: "Mr. Kandy Canada", logo: null },
+  { name: "Hini Canada", logo: "/brands/hini.png" },
+  { name: "Yaashrie Jewels", logo: "/brands/yaashrie-jewels.png" },
+  { name: "Vrinda Creations", logo: "/brands/vrinda-creations.png" },
+  { name: "2winfluencers", logo: "/brands/2winfluencers.png" },
+  { name: "Shibani Kashyap", logo: "/brands/shibani-kashyap.png" },
+  { name: "Lutf", logo: "/brands/lutf.png" },
+  { name: "Juraab", logo: "/brands/juraab.png" },
+  { name: "Team Aces Canada", logo: "/brands/team-aces.png" },
+];
+
+export const industries = [
+  "Retail",
+  "Fashion",
+  "FMCG",
+  "Real Estate",
+  "Liquor",
+  "Food",
+  "Lifestyle",
 ];
 
 export const services = [
@@ -186,26 +203,69 @@ export const testimonials = [
   {
     quote:
       "Clear strategy, sharp execution, zero fluff. Marketing Couple feels like an extension of our team.",
-    name: "Team Arora",
-    role: "Real Estate",
+    name: "Team Aces Canada",
+    role: "Partner",
   },
   {
     quote:
       "From shoot day to final cut, everything was intentional. Our engagement and inquiries both moved up.",
-    name: "Lutf Date Cola",
+    name: "Lutf",
     role: "Brand Lead",
   },
   {
     quote:
-      "Professional, creative, and easy to work with across time zones. India to Canada — seamless.",
-    name: "MGADZ Inc.",
+      "Professional, creative, and easy to work with. Strategy and execution under one roof — exactly what we needed.",
+    name: "Discovery Co-op Canada",
     role: "Marketing",
   },
 ];
 
-export const aboutPoints = [
-  "A creative duo building brands through content, strategy, and growth.",
-  "We work with founders and teams who care about how their brand feels online.",
-  "From research to organic growth, we own the full content loop.",
-  "Based across India and Canada — built for brands that think beyond one market.",
+export const aboutStory = {
+  quickAnswer:
+    "Marketing Couple is a marketing agency founded by Surya and Gunika — co-founders and fiancés who built their careers in marketing. After noticing that great businesses with great products still struggled to communicate their value online, they built the agency to bring strategy, creativity, and execution under one roof.",
+  howItStarted: [
+    "It didn’t begin with a business plan. It started with two marketers who genuinely loved building brands.",
+    "After years in marketing, we found ourselves constantly discussing campaigns, breaking down advertisements, and brainstorming content ideas even outside of work. Marketing wasn’t just our profession — it had become part of our everyday conversations.",
+    "As we worked across industries like retail, fashion, FMCG, real estate, liquor, food, and lifestyle, we noticed one common challenge: many great businesses had great products but struggled to communicate their value online.",
+    "That’s when we decided to build something of our own — combining strategy, creativity, and execution under one roof. As co-founders (and fiancés), we bring different perspectives to every project, challenge each other’s ideas, and always put the brand’s best interests first.",
+  ],
+  differentiators: [
+    {
+      title: "Strategy isn’t an afterthought",
+      text: "It’s built before a single piece of content gets made.",
+    },
+    {
+      title: "Creative isn’t generic",
+      text: "Every brand gets an original direction, not a template.",
+    },
+    {
+      title: "Execution isn’t outsourced",
+      text: "The people who planned the campaign are the same people producing it.",
+    },
+  ],
+  closing:
+    "Today, we partner with businesses that want more than just content. They want a team that thinks strategically, executes creatively, and grows alongside them. Because great marketing isn’t about chasing trends. It’s about building brands people remember.",
+};
+
+export const faqs = [
+  {
+    question: "Who founded Marketing Couple?",
+    answer:
+      "Marketing Couple was founded by Surya and Gunika, co-founders and fiancés who both built their careers in marketing.",
+  },
+  {
+    question: "What does Marketing Couple do?",
+    answer:
+      "Marketing Couple is a marketing agency combining strategy, creativity, and execution to help businesses communicate the value of their products online.",
+  },
+  {
+    question: "Which industries do you work with?",
+    answer:
+      "We have experience across retail, fashion, FMCG, real estate, liquor, food, and lifestyle brands.",
+  },
+  {
+    question: "What makes Marketing Couple different?",
+    answer:
+      "Unlike agencies that separate strategy, creative, and execution across different teams, we keep all three under one roof, led directly by our founders.",
+  },
 ];

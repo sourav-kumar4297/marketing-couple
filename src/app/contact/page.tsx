@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { AtSign, Mail, MapPin } from "lucide-react";
+import { AtSign, Mail } from "lucide-react";
 import { PageIntro } from "@/components/PageIntro";
 import { BookCallButton } from "@/components/BookCallButton";
 import { site } from "@/data/site";
@@ -20,13 +20,6 @@ export default function ContactPage() {
 
       <div className="animate-fade-up-delay-1 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="space-y-5">
-          <div className="flex items-start gap-3 text-sm text-ink">
-            <MapPin strokeWidth={1.5} className="mt-0.5 h-5 w-5 text-gold" />
-            <div>
-              <p className="font-semibold">Based in</p>
-              <p className="text-muted">{site.location}</p>
-            </div>
-          </div>
           <div className="flex items-start gap-3 text-sm text-ink">
             <Mail strokeWidth={1.5} className="mt-0.5 h-5 w-5 text-gold" />
             <div>

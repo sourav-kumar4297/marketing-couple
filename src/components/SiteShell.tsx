@@ -6,7 +6,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen bg-cream">
       <Sidebar />
       <main className="lg:pl-[92px]">
-        <div className="mx-auto max-w-6xl px-4 pb-24 pt-5 sm:px-6 sm:pt-6 lg:px-10 lg:pb-12">
+        <div className="mx-auto max-w-[1480px] px-4 pb-24 pt-5 sm:px-8 sm:pt-6 lg:px-12 lg:pb-12 xl:px-16">
           <TopBar />
           {children}
         </div>

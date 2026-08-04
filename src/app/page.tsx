@@ -1,3 +1,4 @@
+import { InsightsDashboard } from "@/components/InsightsDashboard";
 import { ProcessStrip } from "@/components/ProcessStrip";
 import { ProfileHeader } from "@/components/ProfileHeader";
 import { TrustedBy } from "@/components/TrustedBy";
@@ -7,6 +8,7 @@ export default function HomePage() {
   return (
     <>
       <ProfileHeader />
+      <InsightsDashboard />
       <ProcessStrip />
       <WorkGrid />
       <TrustedBy />
