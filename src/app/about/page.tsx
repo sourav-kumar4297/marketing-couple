@@ -39,7 +39,8 @@ export default function AboutPage() {
                 src="/logo.png"
                 alt={site.brand}
                 fill
-                className="object-cover"
+                quality={100}
+                className="object-contain"
                 sizes="384px"
               />
             </div>

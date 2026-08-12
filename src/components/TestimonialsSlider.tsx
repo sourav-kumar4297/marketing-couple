@@ -13,7 +13,7 @@ export function TestimonialsSlider() {
     if (paused) return;
     const id = window.setInterval(() => {
       setIndex((current) => (current + 1) % total);
-    }, 5500);
+    }, 8000);
     return () => window.clearInterval(id);
   }, [paused, total]);
 
@@ -29,24 +29,23 @@ export function TestimonialsSlider() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="relative flex min-h-[min(52vh,420px)] flex-1 flex-col justify-center overflow-hidden border border-burgundy/10 bg-gradient-to-br from-cream via-white/70 to-cream-soft px-6 py-10 sm:min-h-[min(58vh,520px)] sm:px-10 sm:py-14">
+      <div className="relative flex min-h-[min(58vh,520px)] flex-1 flex-col justify-center overflow-hidden border border-burgundy/10 bg-gradient-to-br from-cream via-white/70 to-cream-soft px-6 py-10 sm:min-h-[min(62vh,580px)] sm:px-10 sm:py-14">
         <Quote
           strokeWidth={1}
-          className="absolute right-6 top-6 h-16 w-16 text-gold/30 sm:right-10 sm:top-8 sm:h-20 sm:w-20"
+          className="absolute right-6 top-6 h-14 w-14 text-gold/30 sm:right-10 sm:top-8 sm:h-16 sm:w-16"
         />
 
         <div
           key={active.name}
           className="relative mx-auto max-w-3xl text-center transition-opacity duration-500"
         >
-          <p className="font-[family-name:var(--font-display)] text-2xl leading-snug text-burgundy sm:text-4xl sm:leading-snug">
+          <p className="font-[family-name:var(--font-display)] text-lg leading-relaxed text-burgundy sm:text-2xl sm:leading-relaxed">
             “{active.quote}”
           </p>
           <footer className="mt-8">
             <p className="text-sm font-semibold tracking-wide text-ink">
-              {active.name}
+              — {active.name}
             </p>
-            <p className="mt-1 text-sm text-muted">{active.role}</p>
           </footer>
         </div>
 

@@ -85,40 +85,24 @@ export const processSteps = [
 
 export const recentWork = [
   {
+    title: "TUBBY CRAFT",
+    views: "969K",
+    image: "/work/tubby-craft.png",
+  },
+  {
     title: "YAASHRIE JEWELS",
-    views: "128K",
-    image:
-      "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80",
+    views: "54K",
+    image: "/work/yaashrie-jewels.png",
   },
   {
     title: "LUTF",
-    views: "96K",
-    image:
-      "https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=600&q=80",
+    views: "2.3K",
+    image: "/work/lutf.png",
   },
   {
-    title: "SHOOT DAY BTS",
-    views: "212K",
-    image:
-      "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=600&q=80",
-  },
-  {
-    title: "JURAAB",
-    views: "84K",
-    image:
-      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=80",
-  },
-  {
-    title: "TUBBY CRAFT",
-    views: "156K",
-    image:
-      "https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=600&q=80",
-  },
-  {
-    title: "BRAND REEL",
-    views: "190K",
-    image:
-      "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=600&q=80",
+    title: "DAMROO",
+    views: "147K",
+    image: "/work/damroo.png",
   },
 ];
 
@@ -196,27 +180,27 @@ export const services = [
 export const testimonials = [
   {
     quote:
-      "They turned our brand into something people actually remember. Our Reels finally feel like us — and they perform.",
+      "TMC & Co. has completely transformed our social media. They handle the ideation, scripting, editing and posting while truly understanding our brand. In just 4 months, we’ve grown from 6K to 19.6K followers, and our content has never felt more engaging or consistent.",
+    name: "Tubby Craft",
+    role: "Client",
+  },
+  {
+    quote:
+      "Thanks TMC for all your hard work and dedication to our project. We are a startup and are launching a new product. Your vision and creativity have provided it a new lease of life and have provided us a dream for success. The quality of the content is exemplary and the execution is better. We wish them all the best for the future.",
+    name: "Damroo",
+    role: "Client",
+  },
+  {
+    quote:
+      "Working with TMC & Co. has been such a great experience. They were incredibly patient with our little ones while creating content and consistently came up with ideas that turned into viral videos. They truly understand how to make our content engaging without compromising our babies’ comfort.",
+    name: "2winfluencers",
+    role: "Client",
+  },
+  {
+    quote:
+      "Gunika and Surya have been a pleasure to work with. What we really appreciate is how personally they take our brand — they understand our vision, communicate closely with our team, and bring fresh ideas to every campaign. TMC & Co. feels less like an agency and more like an extension of our own team.",
     name: "Yaashrie Jewels",
-    role: "Founder",
-  },
-  {
-    quote:
-      "Clear strategy, sharp execution, zero fluff. Marketing Couple feels like an extension of our team.",
-    name: "Team Aces Canada",
-    role: "Partner",
-  },
-  {
-    quote:
-      "From shoot day to final cut, everything was intentional. Our engagement and inquiries both moved up.",
-    name: "Lutf",
-    role: "Brand Lead",
-  },
-  {
-    quote:
-      "Professional, creative, and easy to work with. Strategy and execution under one roof — exactly what we needed.",
-    name: "Discovery Co-op Canada",
-    role: "Marketing",
+    role: "Client",
   },
 ];
 

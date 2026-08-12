@@ -38,9 +38,10 @@ export function Sidebar() {
             <Image
               src="/logo.png"
               alt="Marketing Couple logo"
-              width={56}
-              height={56}
-              className="h-full w-full object-cover"
+              width={112}
+              height={112}
+              quality={100}
+              className="h-full w-full object-contain"
               priority
             />
           </span>
