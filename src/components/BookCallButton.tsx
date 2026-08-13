@@ -6,8 +6,6 @@ export function BookCallButton({ className = "" }: { className?: string }) {
   return (
     <Link
       href={site.bookCall}
-      target="_blank"
-      rel="noreferrer"
       className={`inline-flex items-center gap-2 rounded-md bg-burgundy px-4 py-2.5 text-sm font-medium text-cream transition-all duration-300 hover:-translate-y-0.5 hover:bg-burgundy-deep ${className}`}
     >
       Book a Call

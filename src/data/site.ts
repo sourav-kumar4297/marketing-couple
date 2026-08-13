@@ -7,7 +7,7 @@ export const site = {
   bio: "We build brands people remember.",
   founders: "Surya & Gunika",
   instagram: "https://www.instagram.com/the.marketing.couple/",
-  bookCall: "https://calendly.com/",
+  bookCall: "/contact#contact-form",
   email: "contact@marketingcouple.com",
   phone: "9871604652",
   phoneDisplay: "+91 98716 04652",
@@ -22,9 +22,9 @@ export const navItems = [
   { href: "/", label: "Our Work", icon: "home" as const },
   { href: "/about", label: "About Us", icon: "about" as const },
   { href: "/services", label: "Services", icon: "services" as const },
-  { href: "/contact", label: "Let's Talk", icon: "contact" as const },
   { href: "/process", label: "Process", icon: "process" as const },
   { href: "/testimonials", label: "Testimonials", icon: "testimonials" as const },
+  { href: "/contact", label: "Let's Talk", icon: "contact" as const },
 ];
 
 export const processSteps = [
