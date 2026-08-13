@@ -55,7 +55,7 @@ export const processSteps = [
   {
     label: "Shoot",
     icon: "camera" as const,
-    detail: "Clean production days with brand-right framing and energy.",
+    detail: "Clean production days with on-brand framing and energy.",
     image:
       "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&q=80",
   },
@@ -76,7 +76,7 @@ export const processSteps = [
       "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&q=80",
   },
   {
-    label: "Organic Grown",
+    label: "Organic Growth",
     icon: "growth" as const,
     detail:
       "Iterate with performance data so growth compounds month over month.",
