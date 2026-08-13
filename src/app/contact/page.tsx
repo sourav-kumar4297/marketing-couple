@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { AtSign, Mail } from "lucide-react";
+import { AtSign, Mail, Phone } from "lucide-react";
 import { PageIntro } from "@/components/PageIntro";
 import { BookCallButton } from "@/components/BookCallButton";
 import { site } from "@/data/site";
@@ -29,6 +29,18 @@ export default function ContactPage() {
                 className="text-muted transition-colors hover:text-burgundy"
               >
                 {site.email}
+              </a>
+            </div>
+          </div>
+          <div className="flex items-start gap-3 text-sm text-ink">
+            <Phone strokeWidth={1.5} className="mt-0.5 h-5 w-5 text-gold" />
+            <div>
+              <p className="font-semibold">Phone</p>
+              <a
+                href={`tel:+91${site.phone}`}
+                className="text-muted transition-colors hover:text-burgundy"
+              >
+                {site.phoneDisplay}
               </a>
             </div>
           </div>

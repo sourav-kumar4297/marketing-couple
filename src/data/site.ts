@@ -8,7 +8,9 @@ export const site = {
   founders: "Surya & Gunika",
   instagram: "https://www.instagram.com/the.marketing.couple/",
   bookCall: "https://calendly.com/",
-  email: "hello@marketing.couple",
+  email: "contact@marketingcouple.com",
+  phone: "9871604652",
+  phoneDisplay: "+91 98716 04652",
   stats: [
     { value: "50+", label: "Projects" },
     { value: "30+", label: "Happy Clients" },
@@ -144,8 +146,7 @@ export const services = [
     title: "Reels & Short-Form",
     description:
       "Hooks, scripts, shoots, and edits designed to stop the scroll.",
-    image:
-      "https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=900&q=80",
+    image: "/services/instagram-reels.svg",
   },
   {
     title: "Brand Storytelling",
@@ -158,8 +159,7 @@ export const services = [
     title: "Social Management",
     description:
       "Consistent posting, community engagement, and performance tracking.",
-    image:
-      "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=900&q=80",
+    image: "/services/instagram-social.svg",
   },
   {
     title: "Campaign Creatives",
