@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Play } from "lucide-react";
 import { recentWork, site } from "@/data/site";
 
 export function WorkGrid() {
@@ -35,11 +34,6 @@ export function WorkGrid() {
               className="object-cover transition-transform duration-700 group-hover:scale-105"
               sizes="(max-width: 640px) 48vw, 25vw"
             />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-            <div className="absolute bottom-2 left-2 flex items-center gap-1 rounded-sm bg-black/45 px-1.5 py-0.5 text-[11px] font-medium text-white backdrop-blur-sm">
-              <Play className="h-3 w-3 fill-white" />
-              {item.views}
-            </div>
           </article>
         ))}
       </div>

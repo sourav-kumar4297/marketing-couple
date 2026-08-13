@@ -7,23 +7,24 @@ function BrandItem({
   brand: (typeof trustedBrands)[number];
 }) {
   return (
-    <div className="flex w-[180px] shrink-0 flex-col items-center gap-3 sm:w-[220px]">
-      <div className="relative flex h-36 w-36 items-center justify-center overflow-hidden rounded-full border border-burgundy/10 bg-white shadow-sm sm:h-44 sm:w-44">
+    <div className="flex w-[150px] shrink-0 flex-col items-center gap-2.5 sm:w-[170px]">
+      <div className="relative h-28 w-28 overflow-hidden rounded-full border border-burgundy/10 bg-cream-soft shadow-sm sm:h-32 sm:w-32">
         {brand.logo ? (
           <Image
             src={brand.logo}
             alt={`${brand.name} logo`}
             fill
-            className="object-contain p-3 sm:p-4"
-            sizes="176px"
+            quality={100}
+            className="object-cover"
+            sizes="128px"
           />
         ) : (
-          <span className="px-3 text-center font-[family-name:var(--font-display)] text-sm leading-tight text-burgundy">
+          <span className="flex h-full w-full items-center justify-center bg-white px-3 text-center font-[family-name:var(--font-display)] text-sm leading-tight text-burgundy">
             {brand.name}
           </span>
         )}
       </div>
-      <span className="line-clamp-2 max-w-[180px] text-center text-xs font-medium leading-tight text-burgundy/75 sm:text-sm">
+      <span className="line-clamp-2 max-w-[150px] text-center text-xs font-medium leading-tight text-burgundy/80 sm:text-sm">
         {brand.name}
       </span>
     </div>
@@ -39,11 +40,11 @@ export function TrustedBy() {
         BRANDS WE&apos;VE WORKED WITH
       </h2>
 
-      <div className="brand-marquee relative overflow-hidden">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-cream to-transparent sm:w-20" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-cream to-transparent sm:w-20" />
+      <div className="brand-marquee relative overflow-hidden py-1">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-cream to-transparent sm:w-16" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-cream to-transparent sm:w-16" />
 
-        <div className="brand-marquee-track flex w-max gap-8 sm:gap-12">
+        <div className="brand-marquee-track flex w-max items-start gap-6 sm:gap-8">
           {loop.map((brand, i) => (
             <BrandItem key={`${brand.name}-${i}`} brand={brand} />
           ))}
