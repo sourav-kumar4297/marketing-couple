@@ -8,7 +8,7 @@ export const site = {
   founders: "Surya & Gunika",
   instagram: "https://www.instagram.com/the.marketing.couple/",
   bookCall: "/contact#contact-form",
-  email: "contact@marketingcouple.com",
+  email: "contact@marketingcouple.in",
   phone: "9871604652",
   phoneDisplay: "+91 98716 04652",
   stats: [

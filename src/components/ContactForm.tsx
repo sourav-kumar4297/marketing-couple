@@ -1,7 +1,6 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { site } from "@/data/site";
 
 type FieldErrors = {
   name?: string;
@@ -16,7 +15,10 @@ export function ContactForm() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<FieldErrors>({});
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">(
+    "idle",
+  );
+  const [serverError, setServerError] = useState("");
 
   function validate(): FieldErrors {
     const next: FieldErrors = {};
@@ -42,22 +44,46 @@ export function ContactForm() {
     return next;
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const nextErrors = validate();
     setErrors(nextErrors);
+    setServerError("");
 
     if (Object.keys(nextErrors).length > 0) {
-      setSubmitted(false);
+      setStatus("idle");
       return;
     }
 
-    const subject = encodeURIComponent(`Book a call — ${name.trim()}`);
-    const body = encodeURIComponent(
-      `Name: ${name.trim()}\nEmail: ${email.trim()}\n\n${message.trim()}`,
-    );
-    window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
-    setSubmitted(true);
+    setStatus("sending");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          message: message.trim(),
+        }),
+      });
+
+      const data = (await response.json()) as { error?: string };
+
+      if (!response.ok) {
+        setStatus("error");
+        setServerError(data.error || "Failed to send message. Please try again.");
+        return;
+      }
+
+      setStatus("success");
+      setName("");
+      setEmail("");
+      setMessage("");
+    } catch {
+      setStatus("error");
+      setServerError("Network error. Please check your connection and try again.");
+    }
   }
 
   const inputClass =
@@ -164,15 +190,19 @@ export function ContactForm() {
 
       <button
         type="submit"
-        className="inline-flex items-center rounded-md bg-burgundy px-4 py-2.5 text-sm font-medium text-cream transition-all duration-300 hover:-translate-y-0.5 hover:bg-burgundy-deep"
+        disabled={status === "sending"}
+        className="inline-flex items-center rounded-md bg-burgundy px-4 py-2.5 text-sm font-medium text-cream transition-all duration-300 hover:-translate-y-0.5 hover:bg-burgundy-deep disabled:cursor-not-allowed disabled:opacity-60"
       >
-        Send Message
+        {status === "sending" ? "Sending…" : "Send Message"}
       </button>
 
-      {submitted && (
+      {status === "success" && (
         <p className="text-xs text-emerald-700">
-          Opening your email app to send the message to {site.email}…
+          Message sent successfully. We’ll get back to you soon.
         </p>
+      )}
+      {status === "error" && serverError && (
+        <p className="text-xs text-red-600">{serverError}</p>
       )}
     </form>
   );
