@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -42,16 +42,10 @@ export async function POST(request: Request) {
       );
     }
 
-    const apiKey = cleanEnv(process.env.RESEND_API_KEY);
-    if (!apiKey) {
-      return NextResponse.json(
-        {
-          error:
-            "Email is not configured. Add RESEND_API_KEY in Vercel Environment Variables.",
-        },
-        { status: 500 },
-      );
-    }
+    const host = cleanEnv(process.env.SMTP_HOST) || "smtp.gmail.com";
+    const port = Number(cleanEnv(process.env.SMTP_PORT) || "465");
+    const user = cleanEnv(process.env.SMTP_USER).toLowerCase();
+    const pass = cleanEnv(process.env.SMTP_PASS).replaceAll(/[^a-zA-Z0-9]/g, "");
 
     const recipients = (
       process.env.CONTACT_TO
@@ -61,6 +55,16 @@ export async function POST(request: Request) {
       .map((value) => cleanEnv(value))
       .filter(Boolean);
 
+    if (!user || !pass) {
+      return NextResponse.json(
+        {
+          error:
+            "SMTP is not configured. Add SMTP_USER and SMTP_PASS in Vercel.",
+        },
+        { status: 500 },
+      );
+    }
+
     if (recipients.length === 0) {
       return NextResponse.json(
         { error: "No contact recipients configured." },
@@ -68,12 +72,14 @@ export async function POST(request: Request) {
       );
     }
 
-    // Use your verified domain after setup, or Resend onboarding sender for testing
-    const from =
-      cleanEnv(process.env.RESEND_FROM) ||
-      "Marketing Couple <onboarding@resend.dev>";
+    const transporter = nodemailer.createTransport({
+      host,
+      port,
+      secure: port === 465,
+      auth: { user, pass },
+    });
 
-    const resend = new Resend(apiKey);
+    const from = `"Marketing Couple" <${user}>`;
     const subject = `New enquiry from ${name}`;
     const text = `Name: ${name}\nEmail: ${email}\n\n${message}`;
     const html = `
@@ -86,29 +92,21 @@ export async function POST(request: Request) {
       </div>
     `;
 
-    // Separate sends so each inbox only sees itself
+    // Separate emails so each recipient cannot see the other
     for (const to of recipients) {
-      const { error } = await resend.emails.send({
+      await transporter.sendMail({
         from,
-        to: [to],
+        to,
         replyTo: email,
         subject,
         text,
         html,
       });
-
-      if (error) {
-        console.error("Resend error for", to, error);
-        return NextResponse.json(
-          { error: error.message || "Failed to send message." },
-          { status: 500 },
-        );
-      }
     }
 
     return NextResponse.json({ ok: true });
   } catch (error) {
-    console.error("Contact form error:", error);
+    console.error("Contact form SMTP error:", error);
     const raw = error instanceof Error ? error.message : String(error);
     return NextResponse.json(
       { error: `Failed to send message: ${raw}` },

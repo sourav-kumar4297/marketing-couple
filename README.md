@@ -23,29 +23,24 @@ Open [http://localhost:3000](http://localhost:3000).
 Update copy, stats, work items, and links in `src/data/site.ts`.
 Replace sample images later with your own assets in `public/`.
 
-## Contact form email (Resend)
+## Contact form — Gmail SMTP
 
-Gmail SMTP is unreliable on Vercel. This project uses [Resend](https://resend.com).
-
-1. Create a free account at [resend.com](https://resend.com)
-2. Create an API key
-3. In **Vercel → Settings → Environment Variables (Production)** add:
+Add these in **Vercel → Settings → Environment Variables (Production)**:
 
 ```bash
-RESEND_API_KEY=re_xxxxxxxx
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=465
+SMTP_USER=souravkumar4297@gmail.com
+SMTP_PASS=your16charapppassword
 CONTACT_TO=contact@marketingcouple.in,souravkumar4297@gmail.com
 ```
 
-4. Optional later: verify `marketingcouple.in` in Resend, then add:
+### Create Gmail App Password
+1. Login to Gmail as `souravkumar4297@gmail.com`
+2. Enable 2-Step Verification
+3. Open https://myaccount.google.com/apppasswords
+4. Create password for Mail → copy 16 characters (no spaces)
+5. Paste into `SMTP_PASS` on Vercel
+6. Redeploy
 
-```bash
-RESEND_FROM=Marketing Couple <contact@marketingcouple.in>
-```
-
-Until the domain is verified, Resend uses `onboarding@resend.dev` as sender (testing).
-
-5. Redeploy Vercel after saving env vars.
-
-Each address in `CONTACT_TO` gets a **separate** email, so recipients cannot see each other.
-
-You can remove old `SMTP_*` variables from Vercel.
+Each address in `CONTACT_TO` gets a separate email (recipients cannot see each other).
