@@ -42,15 +42,9 @@ export async function POST(request: Request) {
       );
     }
 
-    const host = cleanEnv(process.env.SMTP_HOST);
-    const port = Number(cleanEnv(process.env.SMTP_PORT) || "587");
-    const user = cleanEnv(process.env.SMTP_USER);
-    // Gmail App Passwords are often pasted with spaces — strip them
-    const pass = cleanEnv(process.env.SMTP_PASS).replaceAll(" ", "");
-
-    // Gmail only allows sending as the authenticated account (unless Send mail as is set up).
-    // Always from the SMTP user so auth does not fail.
-    const from = `"Marketing Couple" <${user}>`;
+    const user = cleanEnv(process.env.SMTP_USER).toLowerCase();
+    // Gmail App Passwords show as "xxxx xxxx xxxx xxxx" — keep letters only
+    const pass = cleanEnv(process.env.SMTP_PASS).replaceAll(/[^a-zA-Z0-9]/g, "");
 
     const recipients = (
       process.env.CONTACT_TO
@@ -60,9 +54,18 @@ export async function POST(request: Request) {
       .map((value) => cleanEnv(value))
       .filter(Boolean);
 
-    if (!host || !user || !pass) {
+    if (!user || !pass) {
       return NextResponse.json(
-        { error: "Email is not configured. Add SMTP settings on the server." },
+        { error: "Email is not configured. Add SMTP_USER and SMTP_PASS on Vercel." },
+        { status: 500 },
+      );
+    }
+
+    if (pass.length !== 16) {
+      return NextResponse.json(
+        {
+          error: `SMTP_PASS looks wrong (got ${pass.length} characters after cleaning, need exactly 16). Paste the Gmail App Password with no spaces.`,
+        },
         { status: 500 },
       );
     }
@@ -74,14 +77,15 @@ export async function POST(request: Request) {
       );
     }
 
+    // Official Gmail transport — more reliable than manual host/port on Vercel
     const transporter = nodemailer.createTransport({
-      host,
-      port,
-      secure: port === 465,
-      requireTLS: port === 587,
+      service: "gmail",
       auth: { user, pass },
     });
 
+    await transporter.verify();
+
+    const from = `"Marketing Couple" <${user}>`;
     const subject = `New enquiry from ${name}`;
     const text = `Name: ${name}\nEmail: ${email}\n\n${message}`;
     const html = `
@@ -95,53 +99,42 @@ export async function POST(request: Request) {
     `;
 
     // Send separately so each recipient only sees their own address
-    await Promise.all(
-      recipients.map((to) =>
-        transporter.sendMail({
-          from,
-          to,
-          replyTo: email,
-          subject,
-          text,
-          html,
-        }),
-      ),
-    );
+    for (const to of recipients) {
+      await transporter.sendMail({
+        from,
+        to,
+        replyTo: email,
+        subject,
+        text,
+        html,
+      });
+    }
 
     return NextResponse.json({ ok: true });
   } catch (error) {
     console.error("Contact form SMTP error:", error);
 
-    const message =
-      error instanceof Error ? error.message.toLowerCase() : "";
+    const raw = error instanceof Error ? error.message : String(error);
+    const lower = raw.toLowerCase();
 
     if (
-      message.includes("invalid login") ||
-      message.includes("username and password") ||
-      message.includes("badcredentials") ||
-      message.includes("eauth")
+      lower.includes("invalid login") ||
+      lower.includes("username and password") ||
+      lower.includes("badcredentials") ||
+      lower.includes("eauth") ||
+      lower.includes("535")
     ) {
       return NextResponse.json(
         {
           error:
-            "SMTP login failed. Use a Gmail App Password for SMTP_PASS (not your normal password).",
-        },
-        { status: 500 },
-      );
-    }
-
-    if (message.includes("from") && message.includes("not allowed")) {
-      return NextResponse.json(
-        {
-          error:
-            "Sender address rejected. SMTP_FROM must match your Gmail login or a verified Send mail as alias.",
+            "Gmail rejected login. 1) Create a new App Password at myaccount.google.com/apppasswords while logged into the SAME account as SMTP_USER. 2) Paste only the 16 letters into Vercel SMTP_PASS (Production). 3) Redeploy. Also open accounts.google.com/DisplayUnlockCaptcha once.",
         },
         { status: 500 },
       );
     }
 
     return NextResponse.json(
-      { error: "Failed to send message. Please try again later." },
+      { error: `Failed to send message: ${raw}` },
       { status: 500 },
     );
   }
