@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -42,9 +42,16 @@ export async function POST(request: Request) {
       );
     }
 
-    const user = cleanEnv(process.env.SMTP_USER).toLowerCase();
-    // Gmail App Passwords show as "xxxx xxxx xxxx xxxx" — keep letters only
-    const pass = cleanEnv(process.env.SMTP_PASS).replaceAll(/[^a-zA-Z0-9]/g, "");
+    const apiKey = cleanEnv(process.env.RESEND_API_KEY);
+    if (!apiKey) {
+      return NextResponse.json(
+        {
+          error:
+            "Email is not configured. Add RESEND_API_KEY in Vercel Environment Variables.",
+        },
+        { status: 500 },
+      );
+    }
 
     const recipients = (
       process.env.CONTACT_TO
@@ -54,22 +61,6 @@ export async function POST(request: Request) {
       .map((value) => cleanEnv(value))
       .filter(Boolean);
 
-    if (!user || !pass) {
-      return NextResponse.json(
-        { error: "Email is not configured. Add SMTP_USER and SMTP_PASS on Vercel." },
-        { status: 500 },
-      );
-    }
-
-    if (pass.length !== 16) {
-      return NextResponse.json(
-        {
-          error: `SMTP_PASS looks wrong (got ${pass.length} characters after cleaning, need exactly 16). Paste the Gmail App Password with no spaces.`,
-        },
-        { status: 500 },
-      );
-    }
-
     if (recipients.length === 0) {
       return NextResponse.json(
         { error: "No contact recipients configured." },
@@ -77,15 +68,12 @@ export async function POST(request: Request) {
       );
     }
 
-    // Official Gmail transport — more reliable than manual host/port on Vercel
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: { user, pass },
-    });
+    // Use your verified domain after setup, or Resend onboarding sender for testing
+    const from =
+      cleanEnv(process.env.RESEND_FROM) ||
+      "Marketing Couple <onboarding@resend.dev>";
 
-    await transporter.verify();
-
-    const from = `"Marketing Couple" <${user}>`;
+    const resend = new Resend(apiKey);
     const subject = `New enquiry from ${name}`;
     const text = `Name: ${name}\nEmail: ${email}\n\n${message}`;
     const html = `
@@ -98,41 +86,30 @@ export async function POST(request: Request) {
       </div>
     `;
 
-    // Send separately so each recipient only sees their own address
+    // Separate sends so each inbox only sees itself
     for (const to of recipients) {
-      await transporter.sendMail({
+      const { error } = await resend.emails.send({
         from,
-        to,
+        to: [to],
         replyTo: email,
         subject,
         text,
         html,
       });
+
+      if (error) {
+        console.error("Resend error for", to, error);
+        return NextResponse.json(
+          { error: error.message || "Failed to send message." },
+          { status: 500 },
+        );
+      }
     }
 
     return NextResponse.json({ ok: true });
   } catch (error) {
-    console.error("Contact form SMTP error:", error);
-
+    console.error("Contact form error:", error);
     const raw = error instanceof Error ? error.message : String(error);
-    const lower = raw.toLowerCase();
-
-    if (
-      lower.includes("invalid login") ||
-      lower.includes("username and password") ||
-      lower.includes("badcredentials") ||
-      lower.includes("eauth") ||
-      lower.includes("535")
-    ) {
-      return NextResponse.json(
-        {
-          error:
-            "Gmail rejected login. 1) Create a new App Password at myaccount.google.com/apppasswords while logged into the SAME account as SMTP_USER. 2) Paste only the 16 letters into Vercel SMTP_PASS (Production). 3) Redeploy. Also open accounts.google.com/DisplayUnlockCaptcha once.",
-        },
-        { status: 500 },
-      );
-    }
-
     return NextResponse.json(
       { error: `Failed to send message: ${raw}` },
       { status: 500 },
