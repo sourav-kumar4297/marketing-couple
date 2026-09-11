@@ -109,19 +109,19 @@ export const recentWork = [
 ];
 
 export const trustedBrands = [
-  { name: "Tubby Craft", logo: "/brands/tubby-craft.png", fit: "contain" as const },
-  { name: "Damroo", logo: "/brands/damroo.png", fit: "contain" as const },
-  { name: "Discovery Co-op Canada", logo: "/brands/discovery-coop.png", fit: "contain" as const },
-  { name: "General Motors Canada", logo: "/brands/general-motors.png", fit: "contain" as const },
-  { name: "Mr. Kandy Canada", logo: null, fit: "contain" as const },
-  { name: "Hini Canada", logo: "/brands/hini.png", fit: "contain" as const },
-  { name: "Yaashrie Jewels", logo: "/brands/yaashrie-jewels.png", fit: "contain" as const },
-  { name: "Vrinda Creations", logo: "/brands/vrinda-creations.png", fit: "contain" as const },
-  { name: "2winfluencers", logo: "/brands/2winfluencers.png", fit: "cover" as const },
-  { name: "Shibani Kashyap", logo: "/brands/shibani-kashyap.png", fit: "cover" as const },
-  { name: "Lutf", logo: "/brands/lutf.png", fit: "contain" as const },
-  { name: "Juraab", logo: "/brands/juraab.png", fit: "contain" as const },
-  { name: "Team Aces Canada", logo: "/brands/team-aces.png", fit: "contain" as const },
+  { name: "Tubby Craft", logo: "/brands/tubby-craft.png" },
+  { name: "Damroo", logo: "/brands/damroo.png" },
+  { name: "Discovery Co-op Canada", logo: "/brands/discovery-coop.png" },
+  { name: "General Motors Canada", logo: "/brands/general-motors.png" },
+  { name: "Mr. Kandy Canada", logo: "/brands/mr-kandy.png" },
+  { name: "Hini Canada", logo: "/brands/hini.png" },
+  { name: "Yaashrie Jewels", logo: "/brands/yaashrie-jewels.png" },
+  { name: "Vrinda Creations", logo: "/brands/vrinda-creations.png" },
+  { name: "2winfluencers", logo: "/brands/2winfluencers.png" },
+  { name: "Shibani Kashyap", logo: "/brands/shibani-kashyap.png" },
+  { name: "Lutf", logo: "/brands/lutf.png" },
+  { name: "Juraab", logo: "/brands/juraab.png" },
+  { name: "Team Aces Canada", logo: "/brands/team-aces.png" },
 ];
 
 export const industries = [
