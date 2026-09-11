@@ -45,7 +45,8 @@ export async function POST(request: Request) {
     const host = cleanEnv(process.env.SMTP_HOST);
     const port = Number(cleanEnv(process.env.SMTP_PORT) || "587");
     const user = cleanEnv(process.env.SMTP_USER);
-    const pass = cleanEnv(process.env.SMTP_PASS);
+    // Gmail App Passwords are often pasted with spaces — strip them
+    const pass = cleanEnv(process.env.SMTP_PASS).replaceAll(" ", "");
 
     // Gmail only allows sending as the authenticated account (unless Send mail as is set up).
     // Always from the SMTP user so auth does not fail.
