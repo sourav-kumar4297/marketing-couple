@@ -7,16 +7,16 @@ function BrandItem({
   brand: (typeof trustedBrands)[number];
 }) {
   return (
-    <div className="flex w-[160px] shrink-0 flex-col items-center gap-2.5 sm:w-[180px]">
-      <div className="relative h-[120px] w-[120px] overflow-hidden rounded-xl border border-burgundy/10 bg-white shadow-sm sm:h-[140px] sm:w-[140px]">
+    <div className="flex w-[180px] shrink-0 flex-col items-center gap-2.5 sm:w-[200px]">
+      <div className="relative h-[110px] w-full overflow-hidden rounded-md border border-burgundy/10 bg-white shadow-sm sm:h-[120px]">
         {brand.logo ? (
           <Image
             src={brand.logo}
             alt={`${brand.name} logo`}
             fill
             quality={100}
-            className="object-contain p-3"
-            sizes="140px"
+            className="object-contain p-2"
+            sizes="200px"
           />
         ) : (
           <span className="flex h-full w-full items-center justify-center px-3 text-center font-[family-name:var(--font-display)] text-sm leading-tight text-burgundy">

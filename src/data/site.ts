@@ -90,38 +90,43 @@ export const recentWork = [
     title: "TUBBY CRAFT",
     views: "969K",
     image: "/work/tubby-craft.png",
+    href: "https://www.instagram.com/reel/DVurcdAjHGJ/",
   },
   {
     title: "YAASHRIE JEWELS",
     views: "54K",
     image: "/work/yaashrie-jewels.png",
+    href: "https://www.instagram.com/reel/DXhQthZk7pa/",
   },
   {
     title: "LUTF",
     views: "2.3K",
     image: "/work/lutf.png",
+    href: "https://www.instagram.com/reel/Danjw9HSo69/",
   },
   {
     title: "DAMROO",
     views: "147K",
     image: "/work/damroo.png",
+    href: "https://www.instagram.com/reel/DbBPddcPIMy/",
   },
 ];
 
 export const trustedBrands = [
   { name: "Tubby Craft", logo: "/brands/tubby-craft.png" },
   { name: "Damroo", logo: "/brands/damroo.png" },
-  { name: "Discovery Co-op Canada", logo: "/brands/discovery-coop.png" },
-  { name: "General Motors Canada", logo: "/brands/general-motors.png" },
-  { name: "Mr. Kandy Canada", logo: "/brands/mr-kandy.png" },
-  { name: "Hini Canada", logo: "/brands/hini.png" },
-  { name: "Yaashrie Jewels", logo: "/brands/yaashrie-jewels.png" },
-  { name: "Vrinda Creations", logo: "/brands/vrinda-creations.png" },
+  { name: "Discovery Co-op", logo: "/brands/discovery-coop.png" },
   { name: "2winfluencers", logo: "/brands/2winfluencers.png" },
-  { name: "Shibani Kashyap", logo: "/brands/shibani-kashyap.png" },
   { name: "Lutf", logo: "/brands/lutf.png" },
+  { name: "M. Rastogi & Sons", logo: "/brands/m-rastogi-sons.png" },
+  { name: "Otaku Drip", logo: "/brands/otaku-drip.png" },
+  { name: "Pradeep Crockery House", logo: "/brands/pradeep-crockery.png" },
+  { name: "Team Aces", logo: "/brands/team-aces.png" },
   { name: "Juraab", logo: "/brands/juraab.png" },
-  { name: "Team Aces Canada", logo: "/brands/team-aces.png" },
+  { name: "Yaashrie Jewels", logo: "/brands/yaashrie-jewels.png" },
+  { name: "Hini", logo: "/brands/hini.png" },
+  { name: "Shibani Kashyap", logo: "/brands/shibani-kashyap.png" },
+  { name: "Ghoomar", logo: "/brands/ghoomar.png" },
 ];
 
 export const industries = [

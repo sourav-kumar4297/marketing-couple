@@ -21,10 +21,14 @@ export function WorkGrid() {
 
       <div className="work-scroll flex gap-3 overflow-x-auto pb-2 sm:grid sm:grid-cols-2 sm:overflow-visible lg:grid-cols-4">
         {recentWork.map((item, index) => (
-          <article
+          <a
             key={item.title}
+            href={item.href}
+            target="_blank"
+            rel="noreferrer"
             className="group relative aspect-[9/16] w-[48vw] max-w-[220px] shrink-0 overflow-hidden rounded-sm bg-burgundy sm:w-auto sm:max-w-none"
             style={{ animationDelay: `${0.05 * index}s` }}
+            aria-label={`Watch ${item.title} reel on Instagram`}
           >
             <Image
               src={item.image}
@@ -34,7 +38,7 @@ export function WorkGrid() {
               className="object-cover transition-transform duration-700 group-hover:scale-105"
               sizes="(max-width: 640px) 48vw, 25vw"
             />
-          </article>
+          </a>
         ))}
       </div>
     </section>
