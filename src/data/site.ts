@@ -204,7 +204,7 @@ export const testimonials = [
   {
     quote:
       "Gunika and Surya have been a pleasure to work with. What we really appreciate is how personally they take our brand — they understand our vision, communicate closely with our team, and bring fresh ideas to every campaign. TMC & Co. feels less like an agency and more like an extension of our own team.",
-    name: "Yaashrie Jewels",
+    name: "Yaashrie Jewel",
     role: "Client",
   },
 ];
